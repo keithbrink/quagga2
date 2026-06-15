@@ -20,7 +20,7 @@ module.exports.resolve = {
     // Prefer Node builds of packages (e.g., ndarray-pixels) instead of browser entries
     mainFields: ['main', 'module'],
     alias: {
-        // Force ndarray-pixels to resolve to its Node build; webpack 4 lacks conditionNames support
+        // Force ndarray-pixels to resolve to its Node build
         'ndarray-pixels$': 'ndarray-pixels/dist/ndarray-pixels-node.cjs',
     },
 };

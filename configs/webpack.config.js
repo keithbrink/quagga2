@@ -46,9 +46,12 @@ module.exports = {
             path.resolve('./src'),
             'node_modules',
         ],
-    },
-    node: {
-        fs: 'empty',
+        // webpack 5 removed `node: { fs: 'empty' }`; node core modules are no longer
+        // polyfilled automatically. The browser build replaces the modules that import
+        // these (input_stream, frame_grabber), so we simply stub them out.
+        fallback: {
+            fs: false,
+        },
     },
     output: {
         path: __dirname + '/../dist',
@@ -59,7 +62,7 @@ module.exports = {
         filename: 'quagga.js',
     },
     devServer: {
-        contentBase: './',
+        static: './',
         hot: true,
     },
     plugins: [
